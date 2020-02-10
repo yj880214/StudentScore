@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.whxh.student.mapper.StuMapper">
+    <!--查询所有学生成绩信息-->
+    <select id="getAllStu" parameterType="PageBean" resultType="Student">
+        select * from student2019
+        <where>
+         <if test="name!=null">
+             name like concat('%',#{name},'%')
+         </if>
+         <if test="classid!=null">
+             and classid like concat('%',#{classid},'%')
+         </if>
+         <if test="teacher!=null">
+             and teacher like concat('%',#{teacher},'%')
+         </if>
+         <if test="scoreFrom!=null">
+             and score &gt;= #{scoreFrom}
+         </if>
+          <if test="scoreTo!=null">
+              and score &lt;= #{scoreTo}
+           </if>
+        </where>
+    </select>
+    <!--添加一条学生信息-->
+    <insert id="addStu">
+        INSERT INTO student2019(NAME,classid,teacher,score)
+        VALUES(#{name},#{classid},#{teacher},#{score})
+    </insert>
+    <!--删除一条学生成绩信息-->
+    <delete id="delStu">
+        delete from student2019 where id=#{id}
+    </delete>
+    <!--查询一条-->
+    <select id="selectOne" resultType="Student">
+        SELECT * FROM student2019 WHERE id=#{id}
+    </select>
+    <!--修改执行-->
+    <update id="updateStu" parameterType="Student">
+       UPDATE student2019
+       SET NAME=#{name},classid=#{classid},teacher=#{teacher},score=#{score}
+       where id=#{id}
+    </update>
+</mapper>
