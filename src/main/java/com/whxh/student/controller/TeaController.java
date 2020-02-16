@@ -10,5 +10,8 @@ package com.whxh.student.controller;
 public class TeaController {
   //yj开发查询老师业务
   //测试GitHub上修改代码
-
+   @RequestMapping("/getData")
+  public  String getData(){
+     return "abc";
+  }
 }
