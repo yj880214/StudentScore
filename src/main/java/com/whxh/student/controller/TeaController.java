@@ -12,7 +12,7 @@ public class TeaController {
   //测试GitHub上修改代码
    @RequestMapping("/getData")
   public  String getData(){
-     return "abcd";
+     return "1111";
     
   }
 }
